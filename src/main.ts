@@ -26,12 +26,12 @@ app.innerHTML = `
   </div>
   <div class="controls">
     <label class="toggle">
-      <input id="overlay-toggle" type="checkbox" checked />
+      <input id="overlay-toggle" type="checkbox" />
       <span>Show overlay</span>
     </label>
   </div>
   <pre id="debug" class="debug">Click two water cells: start then target.</pre>
-  <div class="map-shell" data-overlay="on" data-labels="on">
+  <div class="map-shell" data-overlay="off" data-labels="on">
     <div class="map-base" aria-hidden="true"></div>
     <canvas id="path-layer" class="path-layer"></canvas>
     <div class="grid-overlay" id="grid-overlay"></div>
@@ -449,6 +449,7 @@ window.addEventListener('resize', () => {
 
 (async () => {
   try {
+    mapShell.dataset.overlay = overlayToggle.checked ? 'on' : 'off';
     await buildGrid();
     renderOverlay();
     computeAndRenderPath();
